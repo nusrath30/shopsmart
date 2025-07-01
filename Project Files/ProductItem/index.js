@@ -12,33 +12,22 @@ import {
   ButtonContainer,
 } from "./styledComponents";
 
-const ProductItem = ({ id, name, description, price, img }) => {
 
-  const handleAddToCart = async () => {
-    const userId = Cookies.getItem("userId"); // Get the user ID from cookies or your authentication system
+const AdminProductItem = ({ id, name, description, price, img ,handleDeleteProduct}) => {
 
-    try {
-      const response = await axios.post("http://localhost:5100/add-to-cart", {
-        userId,
-        productId: id,
-      });
-
-      // Handle success here, you can show a success message or update the UI.
-      alert('Product Added to cart!');
-    } catch (error) {
-      console.error("Error adding to cart:", error);
-      // Handle error here, show an error message or log it.
-    }
+  const handleDelete = async () => {
+    handleDeleteProduct(id)
   };
 
   return (
-    <ProductContainer>
+   <div>
+     <ProductContainer>
       <ProductImage src={img} alt={name} />
       <ProductName>{name}</ProductName>
       <ProductPrice>${price}</ProductPrice>
       <ButtonContainer>
-        <Link to={`/order-details/${id}`} className="btn btn-primary" style={{borderRadius:'0'}}>Buy Now</Link>
-        <Button onClick={handleAddToCart}>Add to Cart</Button>
+        <Link to={`/admin/product-update/${id}`}  className='btn btn-primary'>Update</Link>
+        <Button onClick={handleDelete} className='btn btn-danger' >Delete</Button>
       </ButtonContainer>
       {/* <div>
         <label>Quantity: </label>
@@ -49,7 +38,8 @@ const ProductItem = ({ id, name, description, price, img }) => {
         />
       </div> */}
     </ProductContainer>
+   </div>
   );
 };
 
-export default ProductItem;
+export default AdminProductItem;

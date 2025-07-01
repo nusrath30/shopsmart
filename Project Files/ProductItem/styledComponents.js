@@ -41,14 +41,10 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   padding: 8px 16px;
-  background-color: lightgreen;
   color: white;
   border: none;
-  // border-radius: 4px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
-  &:hover {
-    background-color: green;
-  }
 `;
